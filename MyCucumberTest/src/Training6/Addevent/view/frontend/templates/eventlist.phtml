@@ -1,0 +1,23 @@
+<?php $collection = $block->getEvents(); ?>
+<?php $prevDate = ""; ?>
+<div id="eventlist">
+	<?php foreach($collection as $item){ ?>
+	<?php $currentMonth = date("F", strtotime($item->getStartTime()));?>
+	<?php $currentyear =  date("Y", strtotime($item->getStartTime()));?>
+	<?php if($currentMonth.$currentyear != $prevDate){ ?>
+			<h2 class="monthname"><strong><?php echo $currentMonth.', '.$currentyear; ?> </strong></h2>
+	<?php } ?>
+		<div class="item">
+			<h2><?php echo $item->getEventTitle(); ?></h2>
+			<div class="event-content">
+				<div class="event-description"><?php echo $item->getEventDescription(); ?></div>
+				<div class="event-image"><img width="200" height="200" src="<?php echo $block->getImage($item); ?>" /></div>
+			</div>
+		</div>
+	<?php 	$prevDate = $currentMonth.$currentyear; ?>
+	<?php } ?>
+</div>
+
+<?php if ($block->getPagerHtml()): ?>
+	<div class="event-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+<?php endif ?>

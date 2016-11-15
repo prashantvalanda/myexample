@@ -1,0 +1,6 @@
+
+<?php 
+	$orderId = $this->getRequest()->getParam('order_id');
+	echo 'Order Detail of - #'.$orderId; ?>
+	<br />
+<?php echo $block->getOrderData($orderId); ?>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<body>
+    <referenceContainer name="header.container">
+        <block class="Training3\ExchangeRate\Block\ExchangeRate" name="exchangeRate" template="Training3_ExchangeRate::exchangeRate.phtml"/>
+    </referenceContainer>
+</body>

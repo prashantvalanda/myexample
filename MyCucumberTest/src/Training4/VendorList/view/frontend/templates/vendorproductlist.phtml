@@ -1,0 +1,19 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Training4\VendorList\Block\View
+ */
+?>
+<table>
+<th><td><?php echo __('Vendor Products'); ?></td></th>
+<?php $vendor = $block->getVendorProducts();
+foreach($vendor as $child){ ?>
+<tr><td><?php  echo $block->getProdutNameByID($child->getProductId()); ?></td></tr>
+<?php } ?>
+</table>

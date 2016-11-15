@@ -1,0 +1,20 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Training4\Vendor\Block\Productvendor
+ */
+?>
+
+<table>
+<th><td><?php echo __('Product Assign Vendor'); ?></td></th>
+<?php $vendor = $block->getProductAssignVendor(); 
+foreach($vendor as $child){ ?>
+<tr><td><?php  echo $child->getName(); ?></td></tr>
+<?php } ?>
+</table>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Training5\VendorRepository\Api\Data\VendorSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+	<preference for="Training5\VendorRepository\Api\VendorRepositoryInterface" type="Training5\VendorRepository\Model\VendorRepository" />
+	<preference for="Training5\VendorRepository\Api\Data\VendorInterface" type="Training5\VendorRepository\Model\Vendor" />
+	<type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="Training5\VendorRepository\Api\Data\VendorInterface" xsi:type="string">Training5\VendorRepository\Api\VendorRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

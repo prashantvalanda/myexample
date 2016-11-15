@@ -53,7 +53,7 @@ public class DemoTest {
  
         System.out.println("LogOut Successfully");
  
-        // Close the driver
+        // Close the driver   
  
         driver.quit();
  

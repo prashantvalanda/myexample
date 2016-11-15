@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+		<add id="Training6_Addevent::event" title="Event Manager" module="Training6_Addevent" sortOrder="30" resource="Training6_Addevent::event" />
+        <add id="Training6_Addevent::event_manager" title="Event Collection" translate="title" module="Training6_Addevent" sortOrder="0" parent="Training6_Addevent::event" action="addevent/index" resource="Training6_Addevent::event_manager"/>
+    </menu>
+</config>

@@ -1,0 +1,21 @@
+<?php $collection = $block->getSlider(); ?>
+
+<div id="owl-demo" class="owl-carousel">
+	<?php foreach($collection as $item){ ?>
+		<div class="item">
+			<a href="<?php echo $item->getUrl(); ?>"><img src="<?php echo $block->getSliderMediaUrl($item); ?>" alt="<?php echo $item->getSliderTitle(); ?>"></a>
+		</div>
+	<?php } ?>
+</div>
+<script>
+	require(['jquery','owlcarousel'], function($) {
+		$(document).ready(function() {
+		  $("#owl-demo").owlCarousel({
+			  navigation : true,
+			  slideSpeed : 300,
+			  paginationSpeed : 400,
+			  singleItem : true
+		  });
+		});
+    });
+</script>

@@ -1,0 +1,107 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Training4\VendorList\Block\Toolbar
+ */
+?>
+<div class="toolbar-sorter sorter">
+    <label class="sorter-label" for="sorter"><?php /* @escapeNotVerified */ echo __('Sort By') ?></label>
+    <select id="sorter" data-role="sorter" class="sorter-options">
+       <option value="name" 
+	   <?php if($block->getOrder() == "name"){ ?>
+		selected="selected" 
+		<?php } ?> >Name</option>
+		<option value="vendor_id" 
+	   <?php if($block->getOrder() == "vendor_id"){ ?>
+		selected="selected" 
+		<?php } ?> >ID</option>
+    </select>
+	<?php if ($block->getSortDirection() == 'desc'): ?>
+        <a title="<?php /* @escapeNotVerified */ echo __('Set Ascending Direction') ?>" href="#" class="action sorter-action vendoraction sort-desc" data-role="direction-switcher" data-value="asc">
+            <span><?php /* @escapeNotVerified */ echo __('Set Ascending Direction') ?></span>
+        </a>
+    <?php else: ?>
+        <a title="<?php /* @escapeNotVerified */ echo __('Set Descending Direction') ?>" href="#" class="action sorter-action vendoraction sort-asc" data-role="direction-switcher" data-value="desc">
+            <span><?php /* @escapeNotVerified */ echo __('Set Descending Direction') ?></span>
+        </a>
+    <?php endif; ?>
+</div>
+<script>
+require(['jquery'],function($){
+    (function($) {
+        $(window).load(function(){
+			var getUrlParameter = function getUrlParameter(sParam) {
+				var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+					sURLVariables = sPageURL.split('&'),
+					sParameterName,
+					i;
+
+				for (i = 0; i < sURLVariables.length; i++) {
+					sParameterName = sURLVariables[i].split('=');
+
+					if (sParameterName[0] === sParam) {
+						return sParameterName[1] === undefined ? true : sParameterName[1];
+					}
+				}
+			};			
+			
+			var url = window.location.href;
+			
+			$('#sorter').on('change', function() {
+			  var sortorder = this.value;
+			  if (url.indexOf('vendorsort_order' + "=") >= 0)
+				{
+					var prefix = url.substring(0, url.indexOf('vendorsort_order'));
+					var suffix = url.substring(url.indexOf('vendorsort_order'));
+					suffix = suffix.substring(suffix.indexOf("=") + 1);
+					suffix = (suffix.indexOf("&") >= 0) ? suffix.substring(suffix.indexOf("&")) : "";
+					url = prefix + 'vendorsort_order' + "=" + sortorder + suffix;
+				}
+				else
+				{
+					if (url.indexOf("?") < 0)
+						url += "?" + 'vendorsort_order' + "=" + sortorder;
+					else
+						url += "&" + 'vendorsort_order' + "=" + sortorder;				
+				}	
+				
+				window.location.href = url;
+			});
+			
+			$('.vendoraction').on('click', function(e){
+				e.preventDefault();
+				var dirval = $(this).attr('data-value');
+				var dir = getUrlParameter('vendorsort_dir');
+				
+				if (url.indexOf('vendorsort_dir' + "=") >= 0)
+				{
+					var prefix = url.substring(0, url.indexOf('vendorsort_dir'));
+					var suffix = url.substring(url.indexOf('vendorsort_dir'));
+					suffix = suffix.substring(suffix.indexOf("=") + 1);
+					suffix = (suffix.indexOf("&") >= 0) ? suffix.substring(suffix.indexOf("&")) : "";
+					url = prefix + 'vendorsort_dir' + "=" + dirval + suffix;
+				}
+				else
+				{
+					if (url.indexOf("?") < 0)
+						url += "?" + 'vendorsort_dir' + "=" + dirval;
+					else
+						url += "&" + 'vendorsort_dir' + "=" + dirval;				
+				}	
+				
+				window.location.href = url;
+			});
+        });
+    })(jQuery);
+});
+</script>
